@@ -11,9 +11,12 @@ class  MyTheme {
         color: Colors.black,
         fontSize: 30,
         fontWeight: FontWeight.bold,
+
       ),
+      iconTheme: IconThemeData(color: Colors.black),
       elevation: 0,
     ),
+
     canvasColor: primaryColor,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: primaryColor,
