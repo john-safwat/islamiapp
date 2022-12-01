@@ -3,6 +3,10 @@ import 'package:islami/home/Ahadeth/AhadethTap.dart';
 import 'package:islami/home/Quran/QuranTap.dart';
 import 'package:islami/home/Radio/RadioTab.dart';
 import 'package:islami/home/Sebha/SebhaTap.dart';
+import 'package:islami/home/settings/settingsscreen.dart';
+import 'package:provider/provider.dart';
+
+import '../settingsprovider/Setting_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "home screen";
@@ -12,21 +16,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   int selectedindex = 0;
-  List<Widget> taps = [QuranTap(),AhadethTap(),SebhaTap(),RadioTap()];
+  List<Widget> taps = [QuranTap(),AhadethTap(),SebhaTap(),RadioTap(),SettingsScreen()];
   @override
   Widget build(BuildContext context) {
+    var settingsProvider = Provider.of<SettingProvider>(context);
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/background_main.png"),
+          image: AssetImage(settingsProvider.getmainBackground()),
           fit: BoxFit.fill,
         ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title:const Text("أسلامى"),
+          title:const Text("إسلامي"),
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: selectedindex,
@@ -47,6 +53,9 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage('assets/images/ic_radio.png')),
                 label: 'Radio'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: 'settings'),
 
           ],
         ),

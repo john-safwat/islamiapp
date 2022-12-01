@@ -120,7 +120,6 @@ class QuranTap extends StatelessWidget {
     "الفلق",
     "الناس"
   ];
-
   List<String> AyaNumber = [
     '7',
     '286',
@@ -247,50 +246,45 @@ class QuranTap extends StatelessWidget {
           alignment: Alignment.topCenter,
         ),
         Expanded(
-          child: Container(
-            color: MyTheme.primaryColor,
             child: Column(
               children: [
                 Row(
                   children: [
                     Expanded(child: Container(
-                      color: Colors.white,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 4),
-                      child: const Text(
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 2 , color: Theme.of(context).accentColor)
+                      ),
+                      child: Text(
                         "عدد الآيات",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w500),
+                        style : Theme.of(context).textTheme.headline1,
                         textAlign: TextAlign.center,
                       ),
                     )),
                     Expanded(child: Container(
-                      color: Colors.white,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 2, vertical: 4),
-                      child: const Text(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 2 , color: Theme.of(context).accentColor)
+                      ),
+                      child: Text(
                         "اسم السورة",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.w500),
+                        style: Theme.of(context).textTheme.headline1,
                         textAlign: TextAlign.center,
                       ),
                     ))
                   ],
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemBuilder: (_, index) => SuraNameAndAyaNumber(
-                      SuraName: ArSuras[index],
-                      AyaNumber: AyaNumber[index],
-                      index: index,
-                    ),
-                    itemCount: ArSuras.length,
-                  ),
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [ListView.builder(
+                        itemBuilder: (_,index) => SuraNameAndAyaNumber(SuraName: ArSuras[index], AyaNumber: AyaNumber[index], index: index),
+                        itemCount: ArSuras.length),
+                      Container(width: 4,height: 1300, color: Theme.of(context).accentColor, alignment: Alignment.bottomCenter,)
+                    ]
+                  )
                 )
               ],
             ),
-          ),
-        )
+        ),
       ],
     );
   }

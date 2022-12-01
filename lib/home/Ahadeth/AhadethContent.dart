@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islami/themeopject.dart';
+import 'package:provider/provider.dart';
+
+import '../../settingsprovider/Setting_provider.dart';
 class AhadethContentArgument {
   String Hadeth_Title ;
   String Hadeth_Content ;
@@ -9,23 +12,25 @@ class AhadethContent extends StatelessWidget {
   static const String routeName =  'ahadeth content page ';
   @override
   Widget build(BuildContext context) {
+    var settingsProvider = Provider.of<SettingProvider>(context);
     AhadethContentArgument args = ModalRoute.of(context)?.settings.arguments as AhadethContentArgument;
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/background_main.png'),
+          image:AssetImage( settingsProvider.getmainBackground()),
           fit: BoxFit.fill,
         ),
       ),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("أسلامي"),
+          title: Text("إسلامي"),
         ),
         backgroundColor: Colors.transparent,
         body: Column(
            children: [
               Expanded(
                   child: Card(
+                    color: settingsProvider.currentTheme == ThemeMode.light? Colors.white : Theme.of(context).primaryColor,
                     margin:const EdgeInsets.all(30),
                     elevation: 20,
                     shape: RoundedRectangleBorder(
@@ -38,20 +43,20 @@ class AhadethContent extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.all(10),
                             child: Text(args.Hadeth_Title,
-                              style: TextStyle(fontSize: 20 , fontWeight: FontWeight.bold),
+                              style: Theme.of(context).textTheme.headline1,
                               textDirection: TextDirection.rtl,
                             ),
                           ),
                           Container(
                             height: 3,
                             margin: EdgeInsets.symmetric(vertical: 10),
-                            color: MyTheme.primaryColor,
+                            color: Theme.of(context).accentColor,
                           ),
                           Expanded(
                               child: ListView(
                                 children: [
                                   Text(args.Hadeth_Content,
-                                    style: TextStyle(fontSize: 20),
+                                    style: Theme.of(context).textTheme.headline2,
                                     textDirection: TextDirection.rtl,
                                   )
                                 ],

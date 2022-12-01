@@ -25,28 +25,28 @@ class _AhadethTapState extends State<AhadethTap> {
           child: Image.asset("assets/images/ahadeth.png")
         ),
         Container(
-          decoration:const BoxDecoration(
-            border: Border.symmetric(horizontal: BorderSide(width: 3 , color: MyTheme.primaryColor))
+          margin: EdgeInsets.symmetric(horizontal: 50 , vertical: 10),
+          decoration:BoxDecoration(
+            border: Border.symmetric(horizontal: BorderSide(width: 3 , color:Theme.of(context).accentColor))
           ),
           width: double.infinity,
-          child: const Text("الأحاديث",
-            style: TextStyle(
-              fontSize: 30,
-            ),
+          child: Text("الأحاديث",
+            style: Theme.of(context).textTheme.headline1,
             textAlign: TextAlign.center,
           ),
         ),
         Expanded(
           child:
           Hadeth_title.isEmpty?CircularProgressIndicator():
-          ListView.builder(
+          ListView.separated(
+            separatorBuilder: (_,index)=> Container(height: 2, color: Theme.of(context).accentColor, margin: EdgeInsets.symmetric(horizontal: 50),),
             itemBuilder: ( _ ,index)=> InkWell(
               enableFeedback: true,
               onTap: (){
                 Navigator.pushNamed(context, AhadethContent.routeName , arguments: AhadethContentArgument(Hadeth_Content: Hadeth_content[index], Hadeth_Title: Hadeth_title[index]));
               },
               child: Text(Hadeth_title[index],
-                style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.headline1,
                 textAlign: TextAlign.center,
               ),
             ),

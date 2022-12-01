@@ -12,12 +12,9 @@ class RadioTap extends StatelessWidget {
         Image.asset('assets/images/radio image.png'),
         Container(
           margin: const EdgeInsets.symmetric(vertical: 40),
-          child: const Text(
+          child: Text(
             "إذاعة القرآن الكريم",
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.headline1,
             textAlign: TextAlign.center,
           ),
         ),
@@ -29,26 +26,26 @@ class RadioTap extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.skip_previous_rounded,
                   size: 60,
-                  color: MyTheme.primaryColor,
+                  color: Theme.of(context).accentColor,
                 ),
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.play_arrow_rounded,
                   size: 60,
-                  color: MyTheme.primaryColor,
+                  color: Theme.of(context).accentColor,
                 ),
               ),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.skip_next_rounded,
                   size: 60,
-                  color: MyTheme.primaryColor,
+                  color: Theme.of(context).accentColor,
                 ),
               ),
             ],
